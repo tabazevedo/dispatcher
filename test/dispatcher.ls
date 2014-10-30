@@ -1,10 +1,17 @@
-dispatcher = require '..'
+dispatcher-js = require '..'
 {strict-equal: eq, ok} = require 'assert'
 
-suite 'library' ->
-  test 'version' ->
-    eq dispatcher.VERSION, (require '../package.json').version
+dispatcher = new dispatcher-js.Dispatcher
 
-# suite 'emit' ->
-# suite 'subscribe' ->
-# suite 'unsubscribe' ->
+suite 'dispatcher' ->
+  test 'subscribe' ->
+    ok (typeof dispatcher.sub 'action', -> null) is 'Number'
+
+  test 'unsubscribe' ->
+    ok dispatcher.unsub 1
+
+  test 'emit' ->
+    pass = false
+    dispatcher.sub 'action', -> pass = true
+    ok dispatcher.emit 'action'
+    ok pass
