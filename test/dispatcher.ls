@@ -1,17 +1,17 @@
-dispatcher-js = require '..'
+Dispatcher = require '..'
 {strict-equal: eq, ok} = require 'assert'
 
-dispatcher = new dispatcher-js.Dispatcher
+dispatcher = new Dispatcher
 
 suite 'dispatcher' ->
   test 'subscribe' ->
-    ok (typeof dispatcher.sub 'action', -> null) is 'Number'
+    ok (typeof dispatcher.on 'action', -> null) is 'number'
 
   test 'unsubscribe' ->
-    ok dispatcher.unsub 1
+    ok dispatcher.clear 1
 
   test 'emit' ->
     pass = false
-    dispatcher.sub 'action', -> pass = true
-    ok dispatcher.emit 'action'
+    dispatcher.on 'action', (payload) -> pass := payload.value
+    ok dispatcher.emit 'action', value: true
     ok pass
