@@ -13,7 +13,7 @@ module.exports = ->
 
   clear: (which=false) ->
     if typeof which is 'number' 
-      @callbacks = @callbacks |> filter (.id is which)
+      @callbacks = @callbacks |> filter (.id isnt which)
     else if which instanceof Array
       which |> each (~> @clear it)
     else if !which
