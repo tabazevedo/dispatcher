@@ -17,6 +17,11 @@ class Dispatcher
       which |> each (~> @clear it)
 
   emit: (action, payload) ->
-    @_callbacks |> filter (.action is action) |> each (.callback payload)
+    @_callbacks
+      |> each (->
+        if it.action == action
+          it.callback payload
+        else if it.action instanceof RegExp && it.action.test action
+          it.callback payload <<< { matches: action.match it.action })
 
 module.exports = Dispatcher

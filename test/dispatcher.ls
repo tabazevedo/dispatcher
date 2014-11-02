@@ -20,3 +20,9 @@ suite 'dispatcher' ->
     dispatcher.on 'action', (payload) -> pass := payload.value
     ok dispatcher.emit 'action', value: true
     ok pass
+
+  test 'regex' ->
+    pass = false
+    dispatcher.on /^action:(.*)$/, (payload) -> pass := payload.value
+    ok dispatcher.emit 'action:test', value: true
+    ok pass
