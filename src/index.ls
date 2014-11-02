@@ -19,7 +19,7 @@ module.exports = ->
     else if !which
       @callbacks |> map (.id) |> each (~> @clear it)
 
-  emit: (action, payload) ->
+  emit: (action, payload={}) ->
     @callbacks
       |> each (->
         if it.action is action
