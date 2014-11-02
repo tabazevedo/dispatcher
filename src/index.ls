@@ -19,7 +19,8 @@ module.exports = ->
     else if !which
       @callbacks |> map (.id) |> each (~> @clear it)
 
-  emit: (action, payload={}) ->
+  emit: (action, payload) ->
+    if typeof payload === 'undefined' => payload = {}
     @callbacks
       |> each (->
         if it.action is action

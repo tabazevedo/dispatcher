@@ -35,6 +35,12 @@ suite 'unsubscribing from dispatcher' ->
     eq @dispatcher.callbacks.length, 0
 
 suite 'firing events' ->
+  test 'without a payload' ->
+    pass = false
+    ok @dispatcher.on 'action', -> pass := true
+    ok @dispatcher.emit 'action'
+    ok pass
+
   test 'matching a string' ->
     pass = false
     ok @dispatcher.on 'action', (payload) -> pass := payload.value
