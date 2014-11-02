@@ -43,6 +43,6 @@ suite 'firing events' ->
 
   test 'matching an expression' ->
     pass = false
-    ok @dispatcher.on /^action:(.*)$/, (payload) -> pass := payload.value
+    ok @dispatcher.on /action:(.*)/, (payload) -> pass := payload.value
     ok @dispatcher.emit 'action:test', value: true
     ok pass
