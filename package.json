@@ -1,10 +1,10 @@
 {
-  "name": "dispatcher-js",
+  "name": "dispatcher",
   "version": "0.0.0",
   "description": "A robust event dispatcher",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tabazevedo/dispatcher-js"
+    "url": "https://github.com/tabazevedo/dispatcher"
   },
   "keywords": [
     "dispatcher",
