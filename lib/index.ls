@@ -1,15 +1,15 @@
 {filter, each, last, map} = require 'prelude-ls'
 
 module.exports = ->
-  id: 0
+  id: 1
   callbacks: []
 
   on: (action, callback) ->
     @callbacks.push do
-      id: @id += 1
+      id: @id
       action: action
       callback: callback
-    @id
+    @id +:= 1
 
   clear: (which=false) ->
     if typeof which is 'number' 
@@ -23,6 +23,8 @@ module.exports = ->
     @callbacks
       |> each (->
         if it.action is action
+          it.callback payload
+        else if typeof it.action is 'function' && it.action action
           it.callback payload
         else if it.action instanceof RegExp && it.action.test action
           it.callback payload <<< { matches: action.match it.action })
