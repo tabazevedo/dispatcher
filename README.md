@@ -22,3 +22,8 @@ dispatcher.emit('action');
 dispatcher.emit('abc');
   // -> Wildcard match.
 ```
+
+### Testing and compiling `lib` yourself
+
+Dispatcher is written in LiveScript, but compiles to JavaScript.
+Simply `npm install -g gulp` then `gulp test` after installing dependencies and it will compile and run unit tests for you.
