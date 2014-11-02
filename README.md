@@ -4,7 +4,7 @@ A simple functional event dispatcher with support for both string and regular ex
 
 ### Usage
 
-```
+```JavaScript
 dispatcher = require('dispatcher')();
 
 dispatcher.on('action', function(){
