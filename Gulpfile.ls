@@ -11,4 +11,4 @@ gulp.task 'default', ->
 
 gulp.task 'test', ['default'], ->
   gulp.src 'test/**/*.ls', read: false
-    .pipe mocha reporter: 'dot' ui: 'tdd'
+    .pipe mocha reporter: 'spec' ui: 'tdd'
